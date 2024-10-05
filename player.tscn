@@ -112,7 +112,9 @@ animations = [{
 radius = 12.0
 
 [node name="Player" type="Area2D"]
+position = Vector2(215, 236)
 script = ExtResource("1_7co8w")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-0.25, -0.72)
@@ -122,4 +124,3 @@ animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_s4xnm")
-metadata/_edit_group_ = true

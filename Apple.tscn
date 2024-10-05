@@ -1,5 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://d72pkcj02la3"]
+[gd_scene load_steps=29 format=3 uid="uid://d72pkcj02la3"]
 
+[ext_resource type="Script" path="res://Collectable.gd" id="1_biy1w"]
 [ext_resource type="Texture2D" uid="uid://x7nqk07au7uy" path="res://Assets/Items/Fruits/Collected.png" id="1_i8r8d"]
 [ext_resource type="Texture2D" uid="uid://c5vqjv0wxlon" path="res://Assets/Items/Fruits/Apple.png" id="1_polqg"]
 
@@ -184,6 +185,7 @@ height = 20.6667
 [node name="RigidBody2D" type="RigidBody2D"]
 position = Vector2(219, 158)
 gravity_scale = 0.0
+script = ExtResource("1_biy1w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -195,3 +197,5 @@ frame_progress = 0.51967
 position = Vector2(0, -5)
 scale = Vector2(3, 3)
 shape = SubResource("CapsuleShape2D_85not")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

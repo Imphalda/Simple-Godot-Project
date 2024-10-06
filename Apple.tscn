@@ -189,6 +189,7 @@ collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_biy1w")
+points = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -201,4 +202,4 @@ position = Vector2(0, -5)
 scale = Vector2(3, 3)
 shape = SubResource("CapsuleShape2D_85not")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

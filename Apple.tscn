@@ -117,7 +117,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d541v")
 }],
-"loop": true,
+"loop": false,
 "name": &"Collected",
 "speed": 12.0
 }, {
@@ -182,23 +182,28 @@ animations = [{
 radius = 9.66667
 height = 20.6667
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="Apple" type="RigidBody2D"]
 z_index = 1
-position = Vector2(219, 158)
+position = Vector2(199, 162)
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
+can_sleep = false
+freeze = true
+freeze_mode = 1
 script = ExtResource("1_biy1w")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ur0kb")
-animation = &"Default"
-frame_progress = 0.51967
+animation = &"Collected"
+frame = 5
+frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="AppleCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 scale = Vector2(3, 3)
 shape = SubResource("CapsuleShape2D_85not")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="on_animation_finished"]

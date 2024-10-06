@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 	
 	pass
 
+#God please I swear
 
 func _on_body_entered(body: Node) -> void:
 	if body.find_parent("Player").name == "Player":

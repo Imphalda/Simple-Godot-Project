@@ -183,7 +183,10 @@ radius = 9.66667
 height = 20.6667
 
 [node name="RigidBody2D" type="RigidBody2D"]
+z_index = 1
 position = Vector2(219, 158)
+collision_layer = 0
+collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_biy1w")
 

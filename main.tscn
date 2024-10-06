@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dg21gi43uohqb" path="res://player.tscn" id="1_418vv"]
 [ext_resource type="Script" path="res://main.gd" id="1_l7y1o"]
 [ext_resource type="PackedScene" uid="uid://3hb1xvktmyxr" path="res://mob.tscn" id="2_53coy"]
-[ext_resource type="PackedScene" path="res://floor.tscn" id="3_g0gn7"]
+[ext_resource type="PackedScene" uid="uid://jj63iil8ufje" path="res://floor.tscn" id="3_g0gn7"]
 
 [sub_resource type="Curve2D" id="Curve2D_cpp6j"]
 _data = {
@@ -16,11 +16,13 @@ script = ExtResource("1_l7y1o")
 mob_scene = ExtResource("2_53coy")
 
 [node name="Player" parent="." instance=ExtResource("1_418vv")]
+position = Vector2(232, 244)
 
 [node name="Mob" parent="." instance=ExtResource("2_53coy")]
+position = Vector2(338, 188)
 
 [node name="Floor" parent="." instance=ExtResource("3_g0gn7")]
-position = Vector2(1, 90)
+position = Vector2(148, 324)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5

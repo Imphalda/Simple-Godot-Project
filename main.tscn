@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb11aud6ouarr"]
+[gd_scene load_steps=7 format=3 uid="uid://cb11aud6ouarr"]
 
 [ext_resource type="PackedScene" uid="uid://dg21gi43uohqb" path="res://player.tscn" id="1_418vv"]
 [ext_resource type="Script" path="res://main.gd" id="1_l7y1o"]
 [ext_resource type="PackedScene" uid="uid://3hb1xvktmyxr" path="res://mob.tscn" id="2_53coy"]
-[ext_resource type="PackedScene" path="res://floor.tscn" id="3_g0gn7"]
+[ext_resource type="PackedScene" uid="uid://jj63iil8ufje" path="res://floor.tscn" id="3_g0gn7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5cux"]
+size = Vector2(480, 48)
 
 [sub_resource type="Curve2D" id="Curve2D_cpp6j"]
 _data = {
@@ -16,11 +19,27 @@ script = ExtResource("1_l7y1o")
 mob_scene = ExtResource("2_53coy")
 
 [node name="Player" parent="." instance=ExtResource("1_418vv")]
+position = Vector2(33, 657)
 
 [node name="Mob" parent="." instance=ExtResource("2_53coy")]
+position = Vector2(232, 657)
 
 [node name="Floor" parent="." instance=ExtResource("3_g0gn7")]
-position = Vector2(1, 90)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Floor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/RigidBody2D"]
+position = Vector2(240, 24)
+shape = SubResource("RectangleShape2D_g5cux")
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5

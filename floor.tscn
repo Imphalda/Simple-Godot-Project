@@ -1,17 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://jj63iil8ufje"]
+[gd_scene load_steps=2 format=3 uid="uid://jj63iil8ufje"]
 
-[ext_resource type="Texture2D" uid="uid://niy3ch7oyvii" path="res://Assets/Terrain/Terrain (16x16).png" id="1_h5dgg"]
+[ext_resource type="Texture2D" uid="uid://c721odxmji557" path="res://Assets/Terrain/grass.png" id="1_hy7f5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7bdrp"]
-size = Vector2(46, 48)
-
-[node name="Floor" type="RigidBody2D"]
-gravity_scale = 0.0
-
-[node name="Sprite_Floor" type="Sprite2D" parent="."]
-texture = ExtResource("1_h5dgg")
-region_enabled = true
-region_rect = Rect2(97, 0, 46, 48)
-
-[node name="Collision_Floor" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_7bdrp")
+[node name="TextureRect" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_hy7f5")
+stretch_mode = 1

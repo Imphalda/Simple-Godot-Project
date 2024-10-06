@@ -26,6 +26,7 @@ func on_animation_finished() -> void:
 
 func _on_hud_start_game() -> void:
 	show()
+	$AppleCollision.disabled = false
 	$AnimatedSprite2D.animation = "Default"
 	$AnimatedSprite2D.play()
 	pass # Replace with function body.

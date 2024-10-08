@@ -7,14 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://b5e6bf5s8n06k" path="res://Assets/Background/Purple.png" id="5_u8fwy"]
 [ext_resource type="PackedScene" uid="uid://ccru1hepmb8gd" path="res://HUD.tscn" id="6_1211q"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7hbe"]
+size = Vector2(476.75, 47.5)
+
 [sub_resource type="Curve2D" id="Curve2D_cpp6j"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
 }
 point_count = 5
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7hbe"]
-size = Vector2(479.5, 47.5)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_l7y1o")
@@ -31,11 +31,18 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -48.0
+offset_top = -46.0
 offset_right = 0.0
-offset_bottom = 0.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="floor collison" type="RigidBody2D" parent="Floor"]
+position = Vector2(0, -672)
+
+[node name="floor collison shape" type="CollisionShape2D" parent="Floor/floor collison"]
+position = Vector2(240.625, 696)
+shape = SubResource("RectangleShape2D_q7hbe")
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -65,13 +72,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_u8fwy")
 stretch_mode = 1
-
-[node name="floor collison" type="RigidBody2D" parent="."]
-
-[node name="floor collison shape" type="CollisionShape2D" parent="floor collison"]
-top_level = true
-position = Vector2(239, 696)
-shape = SubResource("RectangleShape2D_q7hbe")
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

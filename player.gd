@@ -1,6 +1,6 @@
 extends Area2D
 signal hit
-@export var speed = 300
+@export var speed = 100
 var screen_size
 
 # Called when the node enters the scene tree for the first time.
@@ -13,9 +13,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO
+	var on_floor = false
 	
 	#Gravity
-	velocity += Vector2.DOWN * speed * delta
+	if !on_floor:
+		velocity += Vector2.DOWN * speed * delta
 	
 	"""
 	if Input.is_action_pressed("move_right"):
@@ -57,7 +59,7 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(_body: Node2D) -> void:
-	hide()
+	#hide()
 	hit.emit()
 	$CollisionShape2D.set_deferred("disabled", true)
 

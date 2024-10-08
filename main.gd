@@ -63,3 +63,7 @@ func _on_score_timer_timeout() -> void:
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
 	$ScoreTimer.start()
+
+
+func _on_floor_collison_body_entered(body: Node) -> void:
+	$Player.on_floor = true

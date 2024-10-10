@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 	
 	#Gravity
 	if !on_floor:
-		velocity += Vector2.DOWN * speed * delta
+		velocity += Vector2.DOWN * speed * delta * 10
 	
 	"""
 	if Input.is_action_pressed("move_right"):
@@ -30,12 +30,12 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.animation = "up"
 	
 	if Input.is_action_pressed("move_left"):
-		velocity.x -= speed
+		velocity.x -= speed/20
 		if !velocity.y:
 			$AnimatedSprite2D.animation = "walk"
 	
 	if Input.is_action_pressed("move_right"):
-		velocity.x += speed
+		velocity.x += speed/20
 		if !velocity.y:
 			$AnimatedSprite2D.animation = "walk"
 	

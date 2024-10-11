@@ -1,11 +1,15 @@
 extends Area2D
 signal hit
+signal killed
+signal collected
 @export var speed = 100
 var screen_size
+var player_body
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	player_body = $CollisionShape2D
 	hide()
 	
 
@@ -17,7 +21,7 @@ func _process(delta: float) -> void:
 	
 	#Gravity
 	if !on_floor:
-		velocity += Vector2.DOWN * speed * delta * 10
+		velocity += Vector2.DOWN * speed * delta * 20
 	
 	"""
 	if Input.is_action_pressed("move_right"):
@@ -59,9 +63,14 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(_body: Node2D) -> void:
-	#hide()
-	hit.emit()
-	$CollisionShape2D.set_deferred("disabled", true)
+	#hit.emit(_body)
+	#$CollisionShape2D.set_deferred("disabled", true)
+	if _body.is_in_group("mobs"):
+		killed.emit()
+		hide()
+		$CollisionShape2D.set_deferred("disabled", true)
+	elif _body.is_in_group("collectable"):
+		collected.emit()
 
 func start(pos):
 	position = pos

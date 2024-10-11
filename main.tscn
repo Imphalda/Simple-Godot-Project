@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://main.gd" id="1_l7y1o"]
 [ext_resource type="PackedScene" uid="uid://3hb1xvktmyxr" path="res://mob.tscn" id="2_53coy"]
 [ext_resource type="PackedScene" uid="uid://jj63iil8ufje" path="res://floor.tscn" id="3_g0gn7"]
-[ext_resource type="Script" path="res://floor_collison.gd" id="5_766sv"]
 [ext_resource type="Texture2D" uid="uid://b5e6bf5s8n06k" path="res://Assets/Background/Purple.png" id="5_u8fwy"]
 [ext_resource type="PackedScene" uid="uid://ccru1hepmb8gd" path="res://HUD.tscn" id="6_1211q"]
+[ext_resource type="PackedScene" uid="uid://d72pkcj02la3" path="res://Apple.tscn" id="8_2fkq2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7hbe"]
 size = Vector2(476.75, 47.5)
@@ -21,30 +21,29 @@ point_count = 5
 script = ExtResource("1_l7y1o")
 mob_scene = ExtResource("2_53coy")
 
-[node name="Player" parent="." instance=ExtResource("1_418vv")]
-position = Vector2(81, 505)
-
-[node name="Mob" parent="." instance=ExtResource("2_53coy")]
-position = Vector2(232, 657)
-
-[node name="Floor" parent="." instance=ExtResource("3_g0gn7")]
+[node name="Floor" parent="." groups=["surfaces"] instance=ExtResource("3_g0gn7")]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -46.0
-offset_right = 0.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="floor collison" type="RigidBody2D" parent="Floor"]
-position = Vector2(0, -672)
-script = ExtResource("5_766sv")
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
+collision_layer = 15
+collision_mask = 15
 
-[node name="floor collison shape" type="CollisionShape2D" parent="Floor/floor collison"]
-position = Vector2(240.625, 696)
+[node name="floor collison shape" type="CollisionShape2D" parent="Floor/StaticBody2D"]
+position = Vector2(240.625, 24)
 shape = SubResource("RectangleShape2D_q7hbe")
+
+[node name="Player" parent="." instance=ExtResource("1_418vv")]
+position = Vector2(81, 505)
+
+[node name="Mob" parent="." instance=ExtResource("2_53coy")]
+position = Vector2(530, 521)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -75,9 +74,17 @@ grow_vertical = 2
 texture = ExtResource("5_u8fwy")
 stretch_mode = 1
 
-[connection signal="hit" from="Player" to="." method="game_over"]
-[connection signal="body_entered" from="Floor/floor collison" to="." method="_on_floor_collison_body_entered"]
+[node name="Apple" parent="." instance=ExtResource("8_2fkq2")]
+position = Vector2(112, 301)
+collision_mask = 0
+
+[connection signal="body_shape_entered" from="Player" to="Player" method="_on_body_shape_entered"]
+[connection signal="collected" from="Player" to="." method="_on_player_collected"]
+[connection signal="collected" from="Player" to="Apple" method="_on_player_collected"]
+[connection signal="killed" from="Player" to="." method="_on_player_killed"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="Hud" to="." method="new_game"]
+[connection signal="start_game" from="Hud" to="Apple" method="_on_hud_start_game"]
+[connection signal="collectable_player_hit" from="Apple" to="Hud" method="_on_collectable_player_hit"]

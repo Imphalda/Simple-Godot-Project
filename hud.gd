@@ -13,6 +13,7 @@ func show_game_over():
 	# Wait for MessageTimer to run out
 	await $MessageTimer.timeout
 	
+	$ScoreLabel.text = "0"
 	$Message.text = "Dodge the Creeps!!"
 	$Message.show()
 	
@@ -20,6 +21,7 @@ func show_game_over():
 	$StartButton.show()
 
 func update_score(score):
+	score += int($ScoreLabel.text)
 	$ScoreLabel.text = str(score)
 
 
@@ -41,3 +43,8 @@ func _on_start_button_pressed() -> void:
 
 func _on_message_timer_timeout() -> void:
 	$Message.hide() #Replace with function body.
+	
+
+func _on_collectable_player_hit(points) -> void:
+	update_score(points)
+	pass # Replace with function body.

@@ -57,7 +57,7 @@ func _on_mob_timer_timeout() -> void:
 	add_child(mob)
 
 func _on_score_timer_timeout() -> void:
-	score+= 1
+	score = 1
 	$Hud.update_score(score)
 
 func _on_start_timer_timeout() -> void:
@@ -67,3 +67,14 @@ func _on_start_timer_timeout() -> void:
 
 func _on_floor_collison_body_entered(body: Node) -> void:
 	$Player.on_floor = true
+
+
+func _on_player_killed() -> void:
+	game_over()
+	pass # Replace with function body.
+
+
+func _on_player_collected() -> void:
+	var score = $Apple.points
+	$Hud.update_score(score)
+	pass # Replace with function body.

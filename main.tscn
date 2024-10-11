@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d72pkcj02la3" path="res://Apple.tscn" id="8_2fkq2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7hbe"]
-size = Vector2(476.75, 47.5)
+size = Vector2(475.375, 45.75)
 
 [sub_resource type="Curve2D" id="Curve2D_cpp6j"]
 _data = {
@@ -39,7 +39,7 @@ collision_layer = 15
 collision_mask = 15
 
 [node name="floor collison shape" type="CollisionShape2D" parent="Floor/StaticBody2D2"]
-position = Vector2(239, 26)
+position = Vector2(239.688, 26.875)
 shape = SubResource("RectangleShape2D_q7hbe")
 
 [node name="Player" parent="." instance=ExtResource("1_418vv")]
@@ -72,9 +72,9 @@ z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
+offset_left = 5.0
 offset_top = -1.0
-offset_right = 2.0
+offset_right = 5.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2

@@ -182,26 +182,15 @@ animations = [{
 radius = 9.66667
 height = 20.6667
 
-[node name="Apple" type="RigidBody2D" groups=["collectable"]]
-z_index = 1
-position = Vector2(199, 162)
-collision_layer = 4
-collision_mask = 4
-gravity_scale = 0.0
-can_sleep = false
-freeze = true
+[node name="Apple" type="Area2D"]
 script = ExtResource("1_biy1w")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ur0kb")
 animation = &"Default"
 
 [node name="AppleCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
 scale = Vector2(3, 3)
 shape = SubResource("CapsuleShape2D_85not")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="on_animation_finished"]

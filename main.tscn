@@ -13,9 +13,9 @@ size = Vector2(476.75, 47.5)
 
 [sub_resource type="Curve2D" id="Curve2D_cpp6j"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 1.25204, 683.001, 0, 0, 0, 0, 0, 0)
 }
-point_count = 5
+point_count = 6
 
 [node name="Main" type="Node"]
 script = ExtResource("1_l7y1o")
@@ -26,21 +26,24 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -46.0
-offset_bottom = 2.0
+offset_left = 1.0
+offset_top = -48.0
+offset_right = 49.0
+offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Floor"]
+position = Vector2(-2, -1)
 collision_layer = 15
 collision_mask = 15
 
-[node name="floor collison shape" type="CollisionShape2D" parent="Floor/StaticBody2D"]
-position = Vector2(240.625, 24)
+[node name="floor collison shape" type="CollisionShape2D" parent="Floor/StaticBody2D2"]
+position = Vector2(239, 26)
 shape = SubResource("RectangleShape2D_q7hbe")
 
 [node name="Player" parent="." instance=ExtResource("1_418vv")]
-position = Vector2(81, 505)
+position = Vector2(-68, 592)
 
 [node name="Mob" parent="." instance=ExtResource("2_53coy")]
 position = Vector2(530, 521)
@@ -55,7 +58,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(232, 308)
+position = Vector2(118, 228)
 
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_cpp6j")
@@ -69,22 +72,23 @@ z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 2.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_u8fwy")
 stretch_mode = 1
 
 [node name="Apple" parent="." instance=ExtResource("8_2fkq2")]
-position = Vector2(112, 301)
+position = Vector2(237, 610)
 collision_mask = 0
 
-[connection signal="body_shape_entered" from="Player" to="Player" method="_on_body_shape_entered"]
-[connection signal="collected" from="Player" to="." method="_on_player_collected"]
-[connection signal="collected" from="Player" to="Apple" method="_on_player_collected"]
-[connection signal="killed" from="Player" to="." method="_on_player_killed"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="Hud" to="." method="new_game"]
 [connection signal="start_game" from="Hud" to="Apple" method="_on_hud_start_game"]
+[connection signal="body_entered" from="Apple" to="Player" method="_on_apple_body_entered"]
 [connection signal="collectable_player_hit" from="Apple" to="Hud" method="_on_collectable_player_hit"]
